@@ -1,9 +1,7 @@
 
 const initialState = {
-    lastUpdate: 0,
-    light: false,
-    count: 0,
-    itemList: [],
+    name: 'jason',
+    phone: ''
 }
 
 const reducer = (state = initialState, action) => {
