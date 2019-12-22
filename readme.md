@@ -3,6 +3,6 @@ TO DO LIST
 2. husky
 3. saga
 4. react hooks
-5. google sign in
-6. graphql
-7. material UI
+５. graphql
+
+6. google sign in
