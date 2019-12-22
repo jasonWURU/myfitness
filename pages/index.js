@@ -1,6 +1,6 @@
 import React from 'react'
-// import { Provider } from 'react-redux'
-// import { store } from '../store/store'
+import { useDispatch } from 'react-redux'
+import { withRedux } from '../lib/redux'
 import Head from 'next/head'
 
 import Nav from '../components/nav'
@@ -11,7 +11,6 @@ import Title from '../components/title'
 // jest husky git middleware
 
 const Home = () => (
-//   <Provider store={''}>
     <>
 		<Head>
 			<title>Jason Demo Web</title>
@@ -74,7 +73,6 @@ const Home = () => (
 			}
       	`}</style>
     </>
-//  </Provider>
 )
 
-export default Home
+export default withRedux(Home)
