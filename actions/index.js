@@ -1,6 +1,5 @@
-import { INCREMENT } from '../actions/types';
+import {
+    FAILURE,
+} from '../constants/actionTypes';
 
-
-export  function add() { 
-
-}
+export const onChangeTodo = (item) => ({ type: FAILURE, item });

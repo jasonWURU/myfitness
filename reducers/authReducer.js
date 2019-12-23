@@ -1,12 +1,15 @@
+import {
+  FAILURE,
+} from '../constants/actionTypes';
 
-const initialState = {
-    name: 'jason',
+export const initialState = {
+    name: 'jason`',
     phone: ''
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'TICK':
+    case FAILURE:
       return {
         ...state,
         lastUpdate: action.lastUpdate,
