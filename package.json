@@ -9,12 +9,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-redux": "^7.1.0",
-    "redux": "^3.6.0",
-    "redux-devtools-extension": "^2.13.2",
     "@apollo/react-hooks": "3.0.0",
     "@apollo/react-ssr": "3.0.0",
     "apollo-cache-inmemory": "1.6.3",
@@ -23,7 +17,14 @@
     "graphql": "^14.0.2",
     "graphql-tag": "2.10.1",
     "isomorphic-unfetch": "^3.0.0",
-    "prop-types": "^15.6.2"
+    "next": "latest",
+    "prop-types": "^15.6.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-google-login": "^5.0.7",
+    "react-redux": "^7.1.0",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.2"
   },
   "devDependencies": {
     "babel-plugin-graphql-tag": "^2.5.0"

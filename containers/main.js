@@ -10,7 +10,7 @@ class Main extends Component {
             <div className='container'> 
 
                 <Title/>
-                {this.props.auth.name}~~~
+
                 <div className='row'>
                     <Card/>
                     <Card/>
