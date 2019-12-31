@@ -4,4 +4,4 @@ import {
 } from '../constants/actionTypes';
 
 export const addProduct = () => ({ type: PRODUCT_ADD });
-export const deleteProduct = (itemID) => ({ type: PRODUCT_DELETE, payload: itemID });
+export const deleteProduct = (itemID) => ({ type: PRODUCT_DELETE, payload: {itemID} });

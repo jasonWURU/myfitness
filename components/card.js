@@ -1,7 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-
-const Card = ({id, name, content, handleDelete}) => (
+const Card = ({
+    id,
+    name,
+    content,
+    handleDelete
+}) => (
     <>
     <div className="card">
         <span className="close" onClick={()=>handleDelete(id)}>x</span>
@@ -41,6 +46,13 @@ const Card = ({id, name, content, handleDelete}) => (
     `}</style>
     </>
 )
+
+Card.propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    handleDelete: PropTypes.func.isRequired
+};
 
 export default Card;
 

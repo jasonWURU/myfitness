@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import Card from '../components/card'
 import Title from '../components/title'
 import { connect } from 'react-redux'
@@ -83,8 +84,13 @@ class Main extends Component {
     }
 }
 
+Main.propTypes = {
+    addProduct: PropTypes.func.isRequired,
+    deleteProduct: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = ({auth, product}) => ({...auth, ...product});
-const mapDispatchToProps= ({ addProduct, deleteProduct });
+const mapDispatchToProps= {addProduct, deleteProduct};
 
 export default connect(
     mapStateToProps,
