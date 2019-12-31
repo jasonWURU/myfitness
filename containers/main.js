@@ -1,10 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Card from '../components/card'
 import Title from '../components/title'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import {
+    addProduct,
+    deleteProduct
+} from '../actions/product'
 
 class Main extends Component {
+
     render() {
+
+        const { addProduct, deleteProduct, items } = this.props;
+
         return (
             <>
             <div className='container'> 
@@ -12,15 +20,24 @@ class Main extends Component {
                 <Title/>
 
                 <div className='row'>
-                    <Card/>
-                    <Card/>
-                    <Card/>
+                    {
+                        items.map((item) => ( 
+                            <Fragment key={item.id} >
+                                <Card
+                                    id={item.id}
+                                    name={item.name}
+                                    content={item.content}
+                                    handleDelete={deleteProduct}
+                                />
+                            </Fragment>
+                        ))
+
+                    }
                 </div>
 
                 <div className="row">
                     <div>
-                        <button>新增我好懶</button>
-                        <button>刪除</button>
+                        <button onClick={addProduct}>新增</button>
                     </div>
                 </div>
 
@@ -48,6 +65,7 @@ class Main extends Component {
                     max-width: 880px;
                     margin: 80px auto 40px;
                     display: flex;
+                    flex-wrap: wrap; 
                     flex-direction: row;
                     justify-content: space-around;
                 }
@@ -65,8 +83,10 @@ class Main extends Component {
     }
 }
 
-const mapStateToProps = (auth) => ({...auth});
+const mapStateToProps = ({auth, product}) => ({...auth, ...product});
+const mapDispatchToProps= ({ addProduct, deleteProduct });
 
 export default connect(
-    mapStateToProps
-)(Main)
+    mapStateToProps,
+    mapDispatchToProps
+)(Main);

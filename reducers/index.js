@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
-import main, { initialState as mainState } from './mainReducer';
 import auth, { initialState as authState } from './authReducer';
+import product, { initialState as productState } from './productReducer';
 
 export const initialState = {
     auth: authState,
-    main: mainState
+    product: productState,
 };
 
 export default combineReducers({
-    main,
-    auth
+    auth,
+    product
 });
