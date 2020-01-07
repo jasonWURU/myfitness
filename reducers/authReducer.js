@@ -1,5 +1,5 @@
 import {
-  FAILURE,
+  // AUTH_XXX,
 } from '../constants/actionTypes';
 
 export const initialState = {
@@ -9,12 +9,6 @@ export const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FAILURE:
-      return {
-        ...state,
-        lastUpdate: action.lastUpdate,
-        light: !!action.light,
-      }
     case 'INCREMENT':
       return {
         ...state,

@@ -17,8 +17,11 @@ class Main extends Component {
         return (
             <>
             <div className='container'> 
-
                 <Title/>
+
+                <div className="">
+                    jason                        
+                </div>
 
                 <div className='row'>
                     {
@@ -27,7 +30,12 @@ class Main extends Component {
                                 <Card
                                     id={item.id}
                                     name={item.name}
-                                    content={item.content}
+                                    information={`
+                                        ${item.calories} (cal)
+                                        ${item.protein} (Protein)
+                                        ${item.fat} (Fat)
+                                    `}
+                                    description={item.description}
                                     handleDelete={deleteProduct}
                                 />
                             </Fragment>

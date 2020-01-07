@@ -4,14 +4,16 @@ import PropTypes from 'prop-types'
 const Card = ({
     id,
     name,
-    content,
+    information,
+    description,
     handleDelete
 }) => (
     <>
     <div className="card">
         <span className="close" onClick={()=>handleDelete(id)}>x</span>
-        <h3>{name}</h3>
-        <p>{content}</p>
+        <h3><a href={''}>{name}</a></h3>
+        <p>{information}</p>
+        <p>{description}</p>
     </div>
     <style jsx>{`
         .card {
@@ -32,6 +34,10 @@ const Card = ({
             color: #067df7;
             font-size: 18px;
         }
+        .card h3 a{
+            color: #067df7;
+            text-decoration: none;
+        }
         .card p {
             margin: 0;
             padding: 12px 0 0;
@@ -50,7 +56,8 @@ const Card = ({
 Card.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    information: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
     handleDelete: PropTypes.func.isRequired
 };
 
