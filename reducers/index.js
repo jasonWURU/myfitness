@@ -12,3 +12,5 @@ export default combineReducers({
     auth,
     product
 });
+
+// export const getProduect = (state) => state.ids.map(id => state.byId[id]); Selector

@@ -8,7 +8,21 @@ import {
     deleteProduct
 } from '../actions/product'
 
+import { getFoods } from '../api/ProductAPI';
+
 class Main extends Component {
+
+
+    componentDidMount () {
+
+        getFoods('breakfast')
+            .then((data) => {
+                console.log(data);
+            }).catch((err) => {
+                console.log(err);
+            });
+
+    }
 
     render() {
 
@@ -46,7 +60,8 @@ class Main extends Component {
 
                 <div className="row">
                     <div>
-                        <button onClick={addProduct}>新增</button>
+                        <button onClick={addProduct}>確認</button>
+                        <button onClick={addProduct}>重選</button>
                     </div>
                 </div>
 
