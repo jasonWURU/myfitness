@@ -5,22 +5,15 @@ import Title from '../components/title'
 import { connect } from 'react-redux'
 import {
     addProduct,
-    deleteProduct
+    deleteProduct,
+    fetchProductsRequest
 } from '../actions/product'
-
-import { getFoods } from '../api/ProductAPI';
 
 class Main extends Component {
 
-
     componentDidMount () {
-
-        getFoods('breakfast')
-            .then((data) => {
-                console.log(data);
-            }).catch((err) => {
-                console.log(err);
-            });
+        
+        this.props.fetchProductsRequest('breakfast');
 
     }
 
@@ -39,22 +32,25 @@ class Main extends Component {
 
                 <div className='row'>
                     {
-                        items.map((item) => ( 
-                            <Fragment key={item.id} >
-                                <Card
-                                    id={item.id}
-                                    name={item.name}
-                                    information={`
-                                        ${item.calories} (cal)
-                                        ${item.protein} (Protein)
-                                        ${item.fat} (Fat)
-                                    `}
-                                    description={item.description}
-                                    handleDelete={deleteProduct}
-                                />
-                            </Fragment>
-                        ))
-
+                        items.length > 0 
+                            ? (
+                                items.map((item) => ( 
+                                    <Fragment key={item.id} >
+                                        <Card
+                                            id={item.id}
+                                            name={item.name}
+                                            information={`
+                                                ${item.calories} (cal)
+                                                ${item.protein} (Protein)
+                                                ${item.fat} (Fat)
+                                            `}
+                                            description={item.description}
+                                            handleDelete={deleteProduct}
+                                        />
+                                    </Fragment>
+                                ))
+                            )
+                            : '沒有商品'
                     }
                 </div>
 
@@ -113,7 +109,7 @@ Main.propTypes = {
 };
 
 const mapStateToProps = ({auth, product}) => ({...auth, ...product});
-const mapDispatchToProps= {addProduct, deleteProduct};
+const mapDispatchToProps= {addProduct, deleteProduct, fetchProductsRequest};
 
 export default connect(
     mapStateToProps,

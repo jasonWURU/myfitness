@@ -1,12 +1,12 @@
 import {
     PRODUCT_ADD,
-    PRODUCT_DELETE
+    PRODUCT_DELETE,
+    FETCH_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_FAILURE
 } from '../constants/actionTypes';
 
-import McItems, { getMcProducts } from '../fakeData/product';
-
 export const initialState = {
-    items: [...McItems]
+    items: []
 }
 
 const newItemTemp = {
@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
         //      option 2 Normalize state shape
         //          const { itemID } = action.payload,
         //     return {
-        //         selectIDs: itemID
+        //         selectID: itemID
         //     }
 
         // 確認商品
@@ -48,12 +48,21 @@ const reducer = (state = initialState, action) => {
         //          const selectedItem = items.find((item) => item.select === true);
 
         //      option 2 Normalize state shape
-        //          const selectedItem = items[state.selectIDs];
+        //          const selectedItem = items[state.selectID];
 
         //     return {
         //         selectedItem
         //     }
-
+        case FETCH_PRODUCTS_FAILURE:
+            console.log(action.payload);
+            return {
+                ...state,
+                errormsg: action.payload
+            }
+        case FETCH_PRODUCTS_SUCCESS:
+            return {
+                items: action.payload.data
+            }
 
         default:
             return state

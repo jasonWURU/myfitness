@@ -89,3 +89,6 @@ reducer 簡化重要 ex: slice reducer，higher-order reducer
 ＊相同的數據是否被用作驅動多個組件？
 ＊能否將狀態恢復到特定時間點（在時光旅行調試的時候）？
 ＊是否要緩存數據（比如：數據存在的情況下直接去使用它而不是重複去請求他）？
+
+切分 presentation || container component
+簡單而小的可以混合 presentation & container
