@@ -7,7 +7,7 @@ const PageConfig = {}
 
 const Home = () => (
     <>
-		  <Main/>
+        <Main/>
     </>
 )
 

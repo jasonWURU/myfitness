@@ -4,13 +4,12 @@ import Card from '../components/card'
 import Title from '../components/title'
 import { connect } from 'react-redux'
 import {
-    addProduct,
-    deleteProduct,
     fetchProductsRequest
 } from '../actions/product'
 
 class Main extends Component {
 
+    // 改成 next js server side
     componentDidMount () {
         
         this.props.fetchProductsRequest('breakfast');
@@ -19,45 +18,45 @@ class Main extends Component {
 
     render() {
 
-        const { addProduct, deleteProduct, items } = this.props;
+        const { products: { result, entities } } = this.props;
 
         return (
             <>
-            <div className='container'> 
+            <div className='container'>
+
                 <Title/>
-
-                <div className="">
-                    jason                        
-                </div>
-
+                {'DAY 1'}
                 <div className='row'>
                     {
-                        items.length > 0 
-                            ? (
-                                items.map((item) => ( 
-                                    <Fragment key={item.id} >
-                                        <Card
-                                            id={item.id}
-                                            name={item.name}
-                                            information={`
-                                                ${item.calories} (cal)
-                                                ${item.protein} (Protein)
-                                                ${item.fat} (Fat)
-                                            `}
-                                            description={item.description}
-                                            handleDelete={deleteProduct}
-                                        />
-                                    </Fragment>
-                                ))
-                            )
-                            : '沒有商品'
+                        result.length 
+                        ? ( 
+                            result.map((key) => (
+                                <Fragment key={key} >
+                                    <Card
+                                        id={entities.items[key].id}
+                                        name={entities.items[key].name}
+                                        information={`
+                                            ${entities.items[key].calories} (cal)
+                                            ${entities.items[key].protein} (Protein)
+                                            ${entities.items[key].fat} (Fat)
+                                        `}
+                                        description={entities.items[key].description}
+                                        handleDelete={()=>{}}
+                                        handleSelect={''}
+                                    />
+                                </Fragment> 
+                            ))
+                        )
+                        : (
+                            'no data'
+                        )
                     }
                 </div>
 
                 <div className="row">
                     <div>
-                        <button onClick={addProduct}>確認</button>
-                        <button onClick={addProduct}>重選</button>
+                        <button onClick={()=>{}}>上一步</button>
+                        <button onClick={()=>{}}>確認</button>
                     </div>
                 </div>
 
@@ -109,7 +108,7 @@ Main.propTypes = {
 };
 
 const mapStateToProps = ({auth, product}) => ({...auth, ...product});
-const mapDispatchToProps= {addProduct, deleteProduct, fetchProductsRequest};
+const mapDispatchToProps= {fetchProductsRequest};
 
 export default connect(
     mapStateToProps,
