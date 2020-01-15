@@ -1,16 +1,14 @@
 import { combineReducers } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import auth, { initialState as authState } from './authReducer';
+
+import user, { initialState as userState } from './userReducer';
 import product, { initialState as productState } from './productReducer';
 
 export const initialState = {
-    auth: authState,
+    user: userState,
     product: productState,
 };
 
 export default combineReducers({
-    auth,
+    user,
     product
 });
-
-// export const getProduect = (state) => state.ids.map(id => state.byId[id]); Selector

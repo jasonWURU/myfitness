@@ -4,7 +4,9 @@ import Card from '../components/card'
 import Title from '../components/title'
 import { connect } from 'react-redux'
 import {
-    fetchProductsRequest
+    fetchProductsRequest,
+    selectedProduct,
+    submitProduct
 } from '../actions/product'
 
 class Main extends Component {
@@ -18,7 +20,13 @@ class Main extends Component {
 
     render() {
 
-        const { products: { result, entities } } = this.props;
+        const {  
+            allItems,
+            byItem,
+            selectedProduct,
+            selectedProdoctId,
+            submitProduct 
+        } = this.props;
 
         return (
             <>
@@ -28,21 +36,21 @@ class Main extends Component {
                 {'DAY 1'}
                 <div className='row'>
                     {
-                        result.length 
+                        allItems.length 
                         ? ( 
-                            result.map((key) => (
+                            allItems.map((key) => (
                                 <Fragment key={key} >
                                     <Card
-                                        id={entities.items[key].id}
-                                        name={entities.items[key].name}
+                                        id={byItem[key].id}
+                                        name={byItem[key].name}
                                         information={`
-                                            ${entities.items[key].calories} (cal)
-                                            ${entities.items[key].protein} (Protein)
-                                            ${entities.items[key].fat} (Fat)
+                                            ${byItem[key].calories} (cal)
+                                            ${byItem[key].protein} (Protein)
+                                            ${byItem[key].fat} (Fat)
                                         `}
-                                        description={entities.items[key].description}
-                                        handleDelete={()=>{}}
-                                        handleSelect={''}
+                                        description={byItem[key].description}
+                                        handleSelected={selectedProduct}
+                                        selected={selectedProdoctId === byItem[key].id}
                                     />
                                 </Fragment> 
                             ))
@@ -56,8 +64,18 @@ class Main extends Component {
                 <div className="row">
                     <div>
                         <button onClick={()=>{}}>上一步</button>
-                        <button onClick={()=>{}}>確認</button>
+                        <button onClick={()=>submitProduct(selectedProdoctId)}>確認</button>
                     </div>
+                </div>
+
+                {
+                   `${byItem && selectedProdoctId ? byItem[selectedProdoctId].calories: 0} 卡路里`
+                }
+                {
+                   `${byItem && selectedProdoctId ? byItem[selectedProdoctId].protein: 0} 蛋白質`
+                }
+                <div>
+                    每日紀錄
                 </div>
 
             </div>
@@ -103,12 +121,12 @@ class Main extends Component {
 }
 
 Main.propTypes = {
-    addProduct: PropTypes.func.isRequired,
-    deleteProduct: PropTypes.func.isRequired,
+    selectedProduct: PropTypes.func.isRequired,
+    fetchProductsRequest: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({auth, product}) => ({...auth, ...product});
-const mapDispatchToProps= {fetchProductsRequest};
+const mapStateToProps = ({ auth, product }) => ({...auth, ...product});
+const mapDispatchToProps= { fetchProductsRequest, selectedProduct, submitProduct };
 
 export default connect(
     mapStateToProps,

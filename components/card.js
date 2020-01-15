@@ -6,11 +6,14 @@ const Card = ({
     name,
     information,
     description,
-    handleDelete
+    selected,
+    handleSelected
 }) => (
     <>
-    <div className="card">
-        <span className="close" onClick={()=>handleDelete(id)}>x</span>
+    <div 
+        className={`card ${selected ? 'actived': ''}`} 
+        onClick={()=>handleSelected(id)}
+    >
         <h3><a href={''}>{name}</a></h3>
         <p>{information}</p>
         <p>{description}</p>
@@ -28,6 +31,10 @@ const Card = ({
         }
         .card:hover {
             border-color: #067df7;
+        }
+        .card.actived {
+            border-color: red;
+            background-color: #ddf;
         }
         .card h3 {
             margin: 0;
@@ -58,7 +65,8 @@ Card.propTypes = {
     name: PropTypes.string.isRequired,
     information: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    handleDelete: PropTypes.func.isRequired
+    selected: PropTypes.bool,
+    handleSelected: PropTypes.func.isRequired
 };
 
 export default Card;

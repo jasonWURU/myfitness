@@ -54,7 +54,6 @@ https://shubo.io/normalize-redux-state/
 優點 整理一次 使用多次 
 ex: byID allID
 
-
 reducer 切分 “層”（slice）或者“域”（domain）
 slice reducer
 case function
@@ -62,7 +61,6 @@ higher-order reducer
 
 redux是在combineReducers進行淺比較，有差異才render
 *reducer返回的state對像都與傳入時一致，那麼combineReducers將返回當前的根state對象，而不是新構建的。
-
 
 React-Redux是在 connect 進行淺比較
 
