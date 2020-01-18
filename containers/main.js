@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Card from '../components/card'
-import Title from '../components/title'
+import Dashboard from '../components/dashboard'
 import { connect } from 'react-redux'
 import {
     fetchProductsRequest,
@@ -21,6 +21,9 @@ class Main extends Component {
     render() {
 
         const {  
+            nowDay,
+            allDays,
+            byDay,
             allItems,
             byItem,
             selectedProduct,
@@ -32,50 +35,65 @@ class Main extends Component {
             <>
             <div className='container'>
 
-                <Title/>
-                {'DAY 1'}
                 <div className='row'>
-                    {
-                        allItems.length 
-                        ? ( 
-                            allItems.map((key) => (
-                                <Fragment key={key} >
-                                    <Card
-                                        id={byItem[key].id}
-                                        name={byItem[key].name}
-                                        information={`
-                                            ${byItem[key].calories} (cal)
-                                            ${byItem[key].protein} (Protein)
-                                            ${byItem[key].fat} (Fat)
-                                        `}
-                                        description={byItem[key].description}
-                                        handleSelected={selectedProduct}
-                                        selected={selectedProdoctId === byItem[key].id}
-                                    />
-                                </Fragment> 
-                            ))
-                        )
-                        : (
-                            'no data'
-                        )
-                    }
-                </div>
 
-                <div className="row">
-                    <div>
-                        <button onClick={()=>{}}>上一步</button>
-                        <button onClick={()=>submitProduct(selectedProdoctId)}>確認</button>
+                    <div className="col-left"> 
+
+                        {/* 第幾天 */}
+                        <h3>
+                            {`Day ${byDay[nowDay].id}`} <br/>
+                            {
+                                `${byItem && selectedProdoctId ? byItem[selectedProdoctId].calories: 0} 卡路里`
+                            }
+                            {
+                                `${byItem && selectedProdoctId ? byItem[selectedProdoctId].protein: 0} 蛋白質`
+                            }
+                        </h3>
+                        {/* 選項 */}                        
+                        {
+                            allItems.length 
+                            ? ( 
+                                allItems.map((key) => (
+                                    <Fragment key={key} >
+                                        <Card
+                                            id={byItem[key].id}
+                                            name={byItem[key].name}
+                                            information={`
+                                                ${byItem[key].calories} (cal)
+                                                ${byItem[key].protein} (Protein)
+                                                ${byItem[key].fat} (Fat)
+                                            `}
+                                            description={byItem[key].description}
+                                            handleSelected={selectedProduct}
+                                            selected={selectedProdoctId === byItem[key].id}
+                                        />
+                                    </Fragment> 
+                                ))
+                            )
+                            : (
+                                'no data'
+                            )
+                        }
+
+                        <div>
+                            <button onClick={()=>{}}>上一步</button>
+                            <button onClick={()=>submitProduct(selectedProdoctId)}>確認</button>
+                        </div>
+
                     </div>
-                </div>
 
-                {
-                   `${byItem && selectedProdoctId ? byItem[selectedProdoctId].calories: 0} 卡路里`
-                }
-                {
-                   `${byItem && selectedProdoctId ? byItem[selectedProdoctId].protein: 0} 蛋白質`
-                }
-                <div>
-                    每日紀錄
+                    {/* 統計 */}
+                    <div className="col-right">
+
+                        <div className="info">
+                            <h3>每日紀錄</h3>
+                            <Dashboard
+                                items={allDays.map((key) => (byItem[byDay[key].products[0]]))}
+                            />
+                        </div>
+  
+                    </div>
+
                 </div>
 
             </div>
@@ -99,12 +117,26 @@ class Main extends Component {
                     text-align: center;
                 }
                 .row {
-                    max-width: 880px;
-                    margin: 80px auto 40px;
+                    margin: 20px auto 10px;
+                }
+                .row .col-left,
+                .row .col-right { 
+                    display: inline-block;
+                    text-align: center;
+                    vertical-align: top;
+                }
+                .row .col-left {
+                    width: calc(100% / 4 * 3);
+                }
+                .row .col-right {
+                    width: calc(100% / 4 * 1);
+                    height: 100%;
+                    // background-color: #f5f500;
+                }
+                .info {
+                    // margin-top: 40px;
                     display: flex;
-                    flex-wrap: wrap; 
-                    flex-direction: row;
-                    justify-content: space-around;
+                    flex-direction: column;
                 }
                 button {
                     border: 0;
@@ -125,7 +157,7 @@ Main.propTypes = {
     fetchProductsRequest: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ auth, product }) => ({...auth, ...product});
+const mapStateToProps = ({ user, product }) => ({...user, ...product});
 const mapDispatchToProps= { fetchProductsRequest, selectedProduct, submitProduct };
 
 export default connect(

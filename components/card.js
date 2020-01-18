@@ -20,14 +20,17 @@ const Card = ({
     </div>
     <style jsx>{`
         .card {
-            padding: 18px 18px 24px;
-            width: 220px;
+            padding: 18px;
+            width: 150px;
+            min-height: 200px;
+            display: inline-block;
             text-align: left;
             text-decoration: none;
             color: #434343;
             border: 1px solid #9b9b9b;
             position: relative;
             margin-bottom: 16px;
+            vertical-align: top;
         }
         .card:hover {
             border-color: #067df7;
@@ -51,10 +54,8 @@ const Card = ({
             font-size: 13px;
             color: #333;
         }
-        .card .close {
-            position: absolute;
-            top: 10px;
-            right: 16px;
+        .card + .card {
+            margin-left: 32px;
         }
     `}</style>
     </>

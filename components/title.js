@@ -2,7 +2,7 @@ import React from 'react'
 
 const Title = () =>  (
     <>
-    <h1 className='title'>APP</h1>
+    <h1 className='title'>熱量紀錄</h1>
     <p className='description'>How many calories do i eat per week</p>
     <style jsx>{`
         .title {
