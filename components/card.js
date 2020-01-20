@@ -20,8 +20,8 @@ const Card = ({
     </div>
     <style jsx>{`
         .card {
-            padding: 18px;
-            width: 150px;
+            padding: 16px;
+            width: 180px;
             min-height: 200px;
             display: inline-block;
             text-align: left;
@@ -33,11 +33,13 @@ const Card = ({
             vertical-align: top;
         }
         .card:hover {
-            border-color: #067df7;
+            border-color: #96D7FF;
         }
         .card.actived {
-            border-color: red;
-            background-color: #ddf;
+            background-color: #96D7FF;
+        }
+        .card.actived h3 a{
+            color: #B38546;
         }
         .card h3 {
             margin: 0;
