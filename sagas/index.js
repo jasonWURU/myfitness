@@ -1,5 +1,4 @@
 import { put, takeLatest, call } from 'redux-saga/effects'
-// put 類似 dispatch
 
 import {
     FETCH_PRODUCTS_REQUEST,

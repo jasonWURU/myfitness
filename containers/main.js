@@ -7,14 +7,15 @@ import { connect } from 'react-redux'
 import {
     fetchProductsRequest,
     selectedProduct,
+    unSubmitProduct,
     submitProduct
 } from '../actions/product'
 
 class Main extends Component {
 
-    // 改成 next js server side
     componentDidMount () {
-        
+
+        // 取得商品
         this.props.fetchProductsRequest('breakfast');
 
     }
@@ -29,31 +30,32 @@ class Main extends Component {
             byItem,
             selectedProduct,
             selectedProdoctId,
+            unSubmitProduct,
             submitProduct 
         } = this.props;
 
         return (
             <>
             <div className='container'>
-
                 <div className='row'>
-
                     <div className="col-left"> 
 
-                        {/* 第幾天 */}
+                        {/* 標題 */}
                         <h3>
-                            {`Day ${byDay[nowDay].id}`} <br/>
+                            {`Day ${byDay[nowDay].id} ${byDay[nowDay].name}`} <br/>
                         </h3>
+                        
+                        {/* 產品資訊 */}
                         <div className="subtitle">
-                            {`${byItem && selectedProdoctId ? byItem[selectedProdoctId].calories: 0}k 卡路里`}
-                            {`${byItem && selectedProdoctId ? byItem[selectedProdoctId].protein: 0}g 蛋白質`}
+                            {`${selectedProdoctId ? byItem[selectedProdoctId].calories: 0}k 卡路里`}
+                            {`${selectedProdoctId ? byItem[selectedProdoctId].protein: 0}g 蛋白`}
                         </div>
-                        <div className="content">
 
-                            {/* 選項 */}                   
+                        <div className="content">
                             {
                                 allItems.length 
                                 ? ( 
+                                    /* 選項 */                   
                                     allItems.map((key) => (
                                         <Fragment key={key} >
                                             <Card
@@ -71,14 +73,22 @@ class Main extends Component {
                                         </Fragment> 
                                     ))
                                 )
+                                /* 載入中 */
                                 : <Roller/>
                             }
                         </div>
 
                         <div>
-                            <button onClick={()=>{}}>上一步</button>
-                            <button onClick={selectedProdoctId ? ()=>submitProduct(selectedProdoctId): ()=>{ alert('還沒選') }}>確認</button>
+                            {/* 上一步 */}
+                            <button onClick={unSubmitProduct}>上一步</button>
+                            {/* 送出 */}
+                            <button 
+                                onClick={selectedProdoctId ? ()=>submitProduct(selectedProdoctId): ()=>{ alert('還沒選') }}
+                            >
+                                確認
+                            </button>
                         </div>
+
                     </div>
 
                     {/* 統計 */}
@@ -168,10 +178,9 @@ Main.propTypes = {
     fetchProductsRequest: PropTypes.func.isRequired,
 };
 
-
 // do to
 const mapStateToProps = ({ user, product }) => ({...user, ...product});
-const mapDispatchToProps= { fetchProductsRequest, selectedProduct, submitProduct };
+const mapDispatchToProps= { fetchProductsRequest, selectedProduct, submitProduct, unSubmitProduct };
 
 export default connect(
     mapStateToProps,

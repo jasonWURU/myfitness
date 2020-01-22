@@ -1,14 +1,11 @@
 import { normalize, schema } from 'normalizr';
 
 import {
-  SUBMIT_PRODUCT
+  SUBMIT_PRODUCT,
+  UNSUBMIT_PRODUCT
 } from '../constants/actionTypes';
 
-
 export const initialState = {
-  calories: 0,
-  protein: 0,
-  height: 0, 
   weight: 0,
   nowDay: 1,
   byDay: {
@@ -57,12 +54,35 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
 
+    // 確認送出
     case SUBMIT_PRODUCT:
       return {
           ...state,
-          nowDay: nowDay + 1,
-          byDay: { ...byDay, [nowDay]: { ...byDay[nowDay], products: [action.payload.selectedProdoctId] } }
+          nowDay: nowDay%7 + 1,
+          byDay: { 
+            ...byDay,
+            [nowDay]: { 
+              ...byDay[nowDay],
+              products: [action.payload.selectedProdoctId]
+            }
+          },
       }
+    
+    // 上一步
+    case UNSUBMIT_PRODUCT:
+        const newDay = (nowDay - 1) > 0 ? nowDay - 1 : 1;
+        return {
+            ...state,
+            nowDay: newDay,
+            byDay: { 
+              ...byDay,
+              [newDay]:{ 
+                ...byDay[newDay],
+                products: []
+              } 
+            }
+        }
+  
 
     default:
       return state
