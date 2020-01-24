@@ -6,13 +6,15 @@ filter by breakfast/dinner/launch
 search by calories
 
 TO DO LIST 
+7. typescript
+4. react hooks
+6. 寫測試
+
 2. husky
 3. Heroku
-4. react hooks
-5. graphql
+8. gatsbyjs
 6. thunk
-
-６.寫測試
+5. graphql
 
 筆記
 
@@ -31,17 +33,6 @@ ajax 一種通知reducer 請求失敗的action fetch
 { type: 'FETCH_POSTS_FAILURE', error: 'Oops' }
 { type: 'FETCH_POSTS_SUCCESS', response: { ... } }
 
-undo 問題
-https://cn.redux.js.org/docs/recipes/ImplementingUndoHistory.html
-範例結構如下：
-{
-  counter: {
-    past: [ 0, 1, 2, 3, 4, 5, 6, 7 ],
-    present: 8,
-    future: [ 9, 10 ]
-  }
-}
-兩個action： undo & redo
 
 初始化State - 兩種方式
 1. createStore的第二個參數 preloadedState(服務端可由此注入)
@@ -65,16 +56,6 @@ redux是在combineReducers進行淺比較，有差異才render
 React-Redux是在 connect 進行淺比較
 
 render的條件，是否同的參考(並非值相同)
-
-data
-breakfast
-鬆餅(三片) 323kcal 10g Protein 8g fat
-https://www.mcdonalds.com.tw/tw/ch/food/product_nutrition.nutrition.100001.200028.product.html
-豬肉滿福堡 278kcal 14g Protein 11g fat
-https://www.mcdonalds.com.tw/tw/ch/food/product_nutrition.nutrition.100001.200021.product.html
-香鷄滿福堡 326kcal 13g Protein 15g fat
-https://www.mcdonalds.com.tw/tw/ch/food/product_nutrition.nutrition.100001.200027.product.html
-
 
 心得
 state 結構的重要 應該保持 Normalize & 扁平化

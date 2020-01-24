@@ -71,3 +71,12 @@ export const getMcProducts = (type) =>  {
 }
 
 export default McProducts;
+
+// data
+// breakfast
+// 鬆餅(三片) 323kcal 10g Protein 8g fat
+// https://www.mcdonalds.com.tw/tw/ch/food/product_nutrition.nutrition.100001.200028.product.html
+// 豬肉滿福堡 278kcal 14g Protein 11g fat
+// https://www.mcdonalds.com.tw/tw/ch/food/product_nutrition.nutrition.100001.200021.product.html
+// 香鷄滿福堡 326kcal 13g Protein 15g fat
+// https://www.mcdonalds.com.tw/tw/ch/food/product_nutrition.nutrition.100001.200027.product.html
