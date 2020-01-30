@@ -5,17 +5,6 @@ get calories every Day
 filter by breakfast/dinner/launch
 search by calories
 
-TO DO LIST 
-7. typescript
-4. react hooks
-6. 寫測試
-
-2. husky
-3. Heroku
-8. gatsbyjs
-6. thunk
-5. graphql
-
 筆記
 
 命名規則

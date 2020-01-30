@@ -4,7 +4,6 @@ const  McProducts =  [
     {
         id: 'Muffin',
         name: '鬆餅(三片)',
-        // url: `${McLink.replace()}`,
         type: 'breakfast',
         calories: '323',
         protein: '10',
@@ -72,7 +71,6 @@ export const getMcProducts = (type) =>  {
 
 export default McProducts;
 
-// data
 // breakfast
 // 鬆餅(三片) 323kcal 10g Protein 8g fat
 // https://www.mcdonalds.com.tw/tw/ch/food/product_nutrition.nutrition.100001.200028.product.html

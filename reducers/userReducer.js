@@ -1,5 +1,4 @@
-import { normalize, schema } from 'normalizr';
-
+// import { normalize, schema } from 'normalizr';
 import {
   SUBMIT_PRODUCT,
   UNSUBMIT_PRODUCT
@@ -83,7 +82,6 @@ const reducer = (state = initialState, action) => {
             }
         }
   
-
     default:
       return state
   }
