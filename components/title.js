@@ -2,7 +2,7 @@ import React from 'react'
 
 const Title = () =>  (
     <>
-    <h1 className='title'>紀錄</h1>
+    <h1 className='title'>紀錄 TEST deploy</h1>
     <style jsx>{`
         .title {
             margin: 0;
