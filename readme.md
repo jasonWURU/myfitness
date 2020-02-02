@@ -5,3 +5,5 @@
 - **1**: npm install
 - **2**: npm dev
 
+## Demo
+https://myfitness.jasonwuru.now.sh/
