@@ -4,7 +4,7 @@ import withPageHOC from '../HOC/withPageHOC'
 import Main from '../containers/main'
 import Title from '../components/title'
 
-const PageConfig = {}
+const PageConfig: object = {}
 
 const Home = () => (
     <>

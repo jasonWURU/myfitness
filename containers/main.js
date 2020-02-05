@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+
 import Card from '../components/card'
 import Dashboard from '../components/dashboard'
 import Roller from '../components/roller'
@@ -176,6 +177,10 @@ class Main extends Component {
 Main.propTypes = {
     selectedProduct: PropTypes.func.isRequired,
     fetchProductsRequest: PropTypes.func.isRequired,
+    nowDay: PropTypes.string.isRequired,
+    allDays: PropTypes.array.isRequired,
+    allItems: PropTypes.array.isRequired,
+    byDay: PropTypes.object.isRequired,
 };
 
 // do to
