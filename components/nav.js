@@ -1,30 +1,31 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
 
 const Nav = () => (
   <nav>
     <ul>
       {/* 首頁 */}
       <li>
-        <Link 
-          href='/'
+        <Link
+          href="/"
         >
-          <a>Home</a>
+          <a href="javascritp:;">Home</a>
         </Link>
       </li>
 
       {/* 關於 */}
       <li>
-        <Link 
-          href='/about'
+        <Link
+          href="/about"
         >
-          <a>About</a>
+          <a href="javascritp:;">About</a>
         </Link>
       </li>
 
     </ul>
 
-    <style jsx>{`
+    <style jsx>
+      {`
       :global(body) {
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
@@ -50,8 +51,9 @@ const Nav = () => (
         text-decoration: none;
         font-size: 18px;
       }
-    `}</style>
+    `}
+    </style>
   </nav>
-)
+);
 
-export default Nav
+export default Nav;

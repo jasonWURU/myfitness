@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-const Title = () =>  (
-    <>
-    <h1 className='title'>紀錄 TEST deploy</h1>
-    <style jsx>{`
+const Title = () => (
+  <>
+    <h1 className="title">Fitness Calculator</h1>
+    <style jsx>
+      {`
         .title {
             margin: 0;
             width: 100%;
@@ -13,8 +14,9 @@ const Title = () =>  (
             text-align: center;
             margin-bottom: 16px;
         }
-    `}</style>
-    </>
-)
+    `}
+    </style>
+  </>
+);
 
-export default Title
+export default Title;

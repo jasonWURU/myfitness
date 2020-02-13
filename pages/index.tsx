@@ -1,16 +1,14 @@
-import React from 'react'
-import { withRedux } from '../lib/redux'
-import withPageHOC from '../HOC/withPageHOC'
-import Main from '../containers/main'
-import Title from '../components/title'
-
-const PageConfig: object = {}
+import React from 'react';
+import { withRedux } from '../lib/redux';
+import withPageHOC from '../HOC/withPageHOC';
+import Main from '../containers/main';
+import Title from '../components/title';
 
 const Home = () => (
-    <>
-        <Title/>
-        <Main/>
-    </>
-)
+  <>
+    <Title />
+    <Main />
+  </>
+);
 
-export default withRedux(withPageHOC(Home, PageConfig))
+export default withRedux(withPageHOC(Home));

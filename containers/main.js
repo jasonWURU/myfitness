@@ -1,113 +1,111 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
-
-import Card from '../components/card'
-import Dashboard from '../components/dashboard'
-import Roller from '../components/roller'
-import { connect } from 'react-redux'
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Card from '../components/card';
+import Dashboard from '../components/dashboard';
+import Roller from '../components/roller';
 import {
-    fetchProductsRequest,
-    selectedProduct,
-    unSubmitProduct,
-    submitProduct
-} from '../actions/product'
+  fetchProductsRequest,
+  selectedProduct,
+  unSubmitProduct,
+  submitProduct,
+} from '../actions/product';
 
 class Main extends Component {
+  componentDidMount() {
+    // 取得商品
+    this.props.fetchProductsRequest('breakfast');
+  }
 
-    componentDidMount () {
+  render() {
+    const {
+      nowDay,
+      allDays,
+      byDay,
+      allItems,
+      byItem,
+      selectedProduct,
+      selectedProdoctId,
+      unSubmitProduct,
+      submitProduct,
+    } = this.props;
 
-        // 取得商品
-        this.props.fetchProductsRequest('breakfast');
+    return (
+      <>
+        <div className="container">
+          <div className="row">
+            <div className="col-left">
 
-    }
+              {/* 標題 */}
+              <h3>
+                {`Day ${byDay[nowDay].id} ${byDay[nowDay].name}`}
+                {' '}
+                <br />
+              </h3>
 
-    render() {
+              {/* 產品資訊 */}
+              <div className="subtitle">
+                {`${selectedProdoctId ? byItem[selectedProdoctId].calories : 0}k 卡路里`}
+                {`${selectedProdoctId ? byItem[selectedProdoctId].protein : 0}g 蛋白`}
+              </div>
 
-        const {  
-            nowDay,
-            allDays,
-            byDay,
-            allItems,
-            byItem,
-            selectedProduct,
-            selectedProdoctId,
-            unSubmitProduct,
-            submitProduct 
-        } = this.props;
-
-        return (
-            <>
-            <div className='container'>
-                <div className='row'>
-                    <div className="col-left"> 
-
-                        {/* 標題 */}
-                        <h3>
-                            {`Day ${byDay[nowDay].id} ${byDay[nowDay].name}`} <br/>
-                        </h3>
-                        
-                        {/* 產品資訊 */}
-                        <div className="subtitle">
-                            {`${selectedProdoctId ? byItem[selectedProdoctId].calories: 0}k 卡路里`}
-                            {`${selectedProdoctId ? byItem[selectedProdoctId].protein: 0}g 蛋白`}
-                        </div>
-
-                        <div className="content">
-                            {
-                                allItems.length 
-                                ? ( 
-                                    /* 選項 */                   
-                                    allItems.map((key) => (
-                                        <Fragment key={key} >
-                                            <Card
-                                                id={byItem[key].id}
-                                                name={byItem[key].name}
-                                                information={`
-                                                    ${byItem[key].calories}k 卡路里
-                                                    ${byItem[key].protein}g 蛋白
-                                                    ${byItem[key].fat}g 脂肪
-                                                `}
-                                                description={byItem[key].description}
-                                                handleSelected={selectedProduct}
-                                                selected={selectedProdoctId === byItem[key].id}
-                                            />
-                                        </Fragment> 
-                                    ))
-                                )
-                                /* 載入中 */
-                                : <Roller/>
-                            }
-                        </div>
-
-                        <div>
-                            {/* 上一步 */}
-                            <button onClick={unSubmitProduct}>上一步</button>
-                            {/* 送出 */}
-                            <button 
-                                onClick={selectedProdoctId ? ()=>submitProduct(selectedProdoctId): ()=>{ alert('還沒選') }}
-                            >
-                                確認
-                            </button>
-                        </div>
-
-                    </div>
-
-                    {/* 統計 */}
-                    <div className="col-right">
-
-                        <div className="info">
-                            <h3>每日紀錄</h3>
-                            <Dashboard
-                                items={allDays.map((key) => (byItem[byDay[key].products[0]])).filter((item)=>(!!item))}
+              <div className="content">
+                {
+                    allItems.length
+                      ? (
+                        /* 選項 */
+                        allItems.map((key) => (
+                          <Fragment key={key}>
+                            <Card
+                              id={byItem[key].id}
+                              name={byItem[key].name}
+                              information={`
+                                        ${byItem[key].calories}k 卡路里
+                                        ${byItem[key].protein}g 蛋白
+                                        ${byItem[key].fat}g 脂肪
+                                    `}
+                              description={byItem[key].description}
+                              handleSelected={selectedProduct}
+                              selected={selectedProdoctId === byItem[key].id}
                             />
-                        </div>
-  
-                    </div>
+                          </Fragment>
+                        ))
+                      )
+                    /* 載入中 */
+                      : <Roller />
+                }
+              </div>
 
-                </div>
+              <div>
+                {/* 上一步 */}
+                <button onClick={unSubmitProduct}>上一步</button>
+                {/* 送出 */}
+                <button
+                  onClick={selectedProdoctId ? () => submitProduct(selectedProdoctId) : () => { alert('還沒選'); }}
+                >
+                  確認
+                </button>
+              </div>
 
             </div>
-            <style jsx>{`
+
+            {/* 統計 */}
+            <div className="col-right">
+
+              <div className="info">
+                <h3>每日紀錄</h3>
+                <Dashboard
+                  items={allDays.map((key) => (byItem[byDay[key].products[0]])).filter((item) => (!!item))}
+                />
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+        <style jsx>
+          {`
                 .container {
                     width: 100%;｀
                     color: #333;
@@ -168,26 +166,37 @@ class Main extends Component {
                     background-color: #3498db;
                     margin: 0 16px;
                 }
-            `}</style>
-            </>
-        )
-    }
+            `}
+        </style>
+      </>
+    );
+  }
 }
 
 Main.propTypes = {
-    selectedProduct: PropTypes.func.isRequired,
-    fetchProductsRequest: PropTypes.func.isRequired,
-    nowDay: PropTypes.string.isRequired,
-    allDays: PropTypes.array.isRequired,
-    allItems: PropTypes.array.isRequired,
-    byDay: PropTypes.object.isRequired,
+  selectedProduct: PropTypes.func.isRequired,
+  fetchProductsRequest: PropTypes.func.isRequired,
+  nowDay: PropTypes.string.isRequired,
+  allDays: PropTypes.arrayOf.isRequired,
+  allItems: PropTypes.arrayOf.isRequired,
+  byDay: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  byItem: PropTypes.shape({
+    calories: PropTypes.string.isRequired,
+    protein: PropTypes.string.isRequired,
+    fat: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 // do to
-const mapStateToProps = ({ user, product }) => ({...user, ...product});
-const mapDispatchToProps= { fetchProductsRequest, selectedProduct, submitProduct, unSubmitProduct };
+const mapStateToProps = ({ user, product }) => ({ ...user, ...product });
+const mapDispatchToProps = {
+  fetchProductsRequest, selectedProduct, submitProduct, unSubmitProduct,
+};
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(Main);

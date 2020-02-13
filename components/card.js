@@ -1,28 +1,30 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Card = ({
-    id,
-    name,
-    information,
-    description,
-    selected,
-    handleSelected
+  id,
+  name,
+  information,
+  description,
+  selected,
+  handleSelected,
 }) => (
-    <>
-    <div 
-        className={`card ${selected ? 'actived': ''}`} 
-        onClick={()=>handleSelected(id)}
+  <>
+    <div
+      className={`card ${selected ? 'activated' : ''}`}
+      onClick={() => handleSelected(id)}
     >
-        <h3><a href={''}>{name}</a></h3>
-        <p>{information}</p>
-        <p>{description}</p>
+      <h3><a href="/">{name}</a></h3>
+      <p>{information}</p>
+      <p>{description}</p>
     </div>
-    <style jsx>{`
+    <style jsx>
+      {`
         .card {
             padding: 16px;
             width: 180px;
-            min-height: 200px;
+            // min-height: 200px;
+            height: 100%;
             display: inline-block;
             text-align: left;
             text-decoration: none;
@@ -35,10 +37,10 @@ const Card = ({
         .card:hover {
             border-color: #96D7FF;
         }
-        .card.actived {
+        .card.activated {
             background-color: #96D7FF;
         }
-        .card.actived h3 a{
+        .card.activated h3 a{
             color: #B38546;
         }
         .card h3 {
@@ -59,18 +61,18 @@ const Card = ({
         .card + .card {
             margin-left: 32px;
         }
-    `}</style>
-    </>
-)
+    `}
+    </style>
+  </>
+);
 
 Card.propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    information: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    selected: PropTypes.bool,
-    handleSelected: PropTypes.func.isRequired
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  information: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  selected: PropTypes.bool,
+  handleSelected: PropTypes.func.isRequired,
 };
 
 export default Card;
-

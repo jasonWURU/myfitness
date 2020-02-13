@@ -1,11 +1,15 @@
-import test from 'tape';
+// import test from 'test';
 
-import { fetchProductsRequest } from './index'
+// import { fetchProductsRequest } from './index';
 
-test('fetch product Saga test', (assert) => {
+// test('fetch product Saga test', () => {
+//   const gen = fetchProductsRequest();
 
-    const gen = fetchProductsRequest();
+// //   console.log(gen.next());
+// });
 
-    console.log(gen.next());
-    
+// import { shallow } from 'enzyme';
+
+test('should ', () => {
+  expect(2 + 2).toBe(4);
 });
