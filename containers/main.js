@@ -11,7 +11,39 @@ import {
   submitProduct,
 } from '../actions/product';
 
+// export interface MainProps {
+//   nowDay?: any;
+//   allDays: Array<number>;
+//   allItems: Array<number>;
+//   byDay?: any;
+//   byItem?: any;
+//   fetchProductsRequest?: any;
+//   selectedProduct: () => void;
+//   selectedProductId?: number;
+//   unSubmitProduct?: any;
+//   submitProduct?: any;
+// }
+
+// class Main extends Component<MainProps, {}> {
 class Main extends Component {
+
+  // static propTypes = {
+  //   selectedProduct: PropTypes.func.isRequired,
+  //   fetchProductsRequest: PropTypes.func.isRequired,
+  //   nowDay: PropTypes.string.isRequired,
+  //   allDays: PropTypes.array.isRequired,
+  //   allItems: PropTypes.array.isRequired,
+  //   byDay: PropTypes.shape({
+  //     id: PropTypes.string.isRequired,
+  //     name: PropTypes.string.isRequired,
+  //   }).isRequired,
+  //   byItem: PropTypes.shape({
+  //     calories: PropTypes.string.isRequired,
+  //     protein: PropTypes.string.isRequired,
+  //     fat: PropTypes.string.isRequired,
+  //   }).isRequired,
+  // };
+
   componentDidMount() {
     // 取得商品
     this.props.fetchProductsRequest('breakfast');
@@ -25,7 +57,7 @@ class Main extends Component {
       allItems,
       byItem,
       selectedProduct,
-      selectedProdoctId,
+      selectedProductId,
       unSubmitProduct,
       submitProduct,
     } = this.props;
@@ -45,8 +77,8 @@ class Main extends Component {
 
               {/* 產品資訊 */}
               <div className="subtitle">
-                {`${selectedProdoctId ? byItem[selectedProdoctId].calories : 0}k 卡路里`}
-                {`${selectedProdoctId ? byItem[selectedProdoctId].protein : 0}g 蛋白`}
+                {`${selectedProductId ? byItem[selectedProductId].calories : 0}k 卡路里`}
+                {`${selectedProductId ? byItem[selectedProductId].protein : 0}g 蛋白`}
               </div>
 
               <div className="content">
@@ -66,13 +98,13 @@ class Main extends Component {
                                     `}
                               description={byItem[key].description}
                               handleSelected={selectedProduct}
-                              selected={selectedProdoctId === byItem[key].id}
+                              selected={selectedProductId === byItem[key].id}
                             />
                           </Fragment>
                         ))
                       )
                     /* 載入中 */
-                      : <Roller />
+                    : <Roller />
                 }
               </div>
 
@@ -81,7 +113,7 @@ class Main extends Component {
                 <button onClick={unSubmitProduct}>上一步</button>
                 {/* 送出 */}
                 <button
-                  onClick={selectedProdoctId ? () => submitProduct(selectedProdoctId) : () => { alert('還沒選'); }}
+                  onClick={selectedProductId ? () => submitProduct(selectedProductId) : () => { alert('還沒選'); }}
                 >
                   確認
                 </button>
@@ -173,27 +205,39 @@ class Main extends Component {
   }
 }
 
-Main.propTypes = {
-  selectedProduct: PropTypes.func.isRequired,
-  fetchProductsRequest: PropTypes.func.isRequired,
-  nowDay: PropTypes.string.isRequired,
-  allDays: PropTypes.arrayOf.isRequired,
-  allItems: PropTypes.arrayOf.isRequired,
-  byDay: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  byItem: PropTypes.shape({
-    calories: PropTypes.string.isRequired,
-    protein: PropTypes.string.isRequired,
-    fat: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
 // do to
-const mapStateToProps = ({ user, product }) => ({ ...user, ...product });
+// type ConnectedStateProps = Pick<MainProps,
+//   "nowDay"|
+//   "allDays"|
+//   "byDay"|
+//   "allItems"|
+//   "byItem"|
+//   "selectedProduct"|
+//   "selectedProductId"|
+//   "unSubmitProduct"|
+//   "submitProduct"
+// >
+
+// interface StateProps {
+//   user: any;
+//   product: any
+// }
+
+// const mapStateToProps = ({ user, product }: StateProps) =>  ({
+const mapStateToProps = ({ user, product }) =>  ({
+  /* 這裡 return 的內容將可以在 this.props 中使用 */
+    nowDay: user.nowDay,
+    byDay: user.byDay,
+    allDays: user.allDays,
+    allItems: product.allItems,
+    byItem: product.byItem,
+})
+
 const mapDispatchToProps = {
-  fetchProductsRequest, selectedProduct, submitProduct, unSubmitProduct,
+  fetchProductsRequest,
+  selectedProduct,
+  submitProduct,
+  unSubmitProduct
 };
 
 export default connect(

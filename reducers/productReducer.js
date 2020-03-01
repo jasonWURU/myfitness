@@ -12,13 +12,13 @@ const itemSchema = new schema.Entity('items');
 export const initialState = {
     allItems: [],
     byItem: {},
-    selectedProdoctId: '',
-    pastProdoctIds: [],
+    selectedProductId: '',
+    pastProductIds: [],
 }
 
 const reducer = (state = initialState, action) => {
 
-    const { pastProdoctIds } = state; 
+    const { pastProductIds } = state; 
 
     switch (action.type) {
 
@@ -26,23 +26,23 @@ const reducer = (state = initialState, action) => {
         case SELECT_PRODUCT:
             return {
                 ...state,
-                selectedProdoctId: action.payload.prodoctId,
+                selectedProductId: action.payload.productId,
             }
 
         // 確認送出
         case SUBMIT_PRODUCT:
             return {
                 ...state,
-                pastProdoctIds: [...pastProdoctIds, action.payload.selectedProdoctId],
-                selectedProdoctId: ''
+                pastProductIds: [...pastProductIds, action.payload.selectedProductId],
+                selectedProductId: ''
             }
 
         // 上一步
         case UNSUBMIT_PRODUCT:
             return {
                 ...state,
-                selectedProdoctId: pastProdoctIds[pastProdoctIds.length - 1],
-                pastProdoctIds: pastProdoctIds.slice(0, pastProdoctIds.length - 1)
+                selectedProductId: pastProductIds[pastProductIds.length - 1],
+                pastProductIds: pastProductIds.slice(0, pastProductIds.length - 1)
             }
 
         // 取得商品成功

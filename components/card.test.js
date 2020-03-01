@@ -14,7 +14,7 @@ describe('<Counter>', () => {
       description="jason"
       handleSelected=""
       selected={0}
-    />,
+    />
   );
   /*
   */

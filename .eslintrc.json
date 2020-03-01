@@ -28,7 +28,8 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
+        "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+        "import/extensions": [".js", ".jsx", ".json", ".ts", ".tsx"]
     },
     "settings": {
         "react": {
@@ -51,6 +52,11 @@
           // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
           "Hyperlink",
           {"name": "Link", "linkAttribute": "to"}
-        ]
+        ],
+        "import/resolver": {
+            "node": {
+              "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
       }
 }

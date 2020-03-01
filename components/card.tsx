@@ -1,6 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+export interface CardProps {
+  id: string;
+  name: string;
+  information: string;
+  description: string;
+  selected: boolean;
+  handleSelected: any;
+}
+
 const Card = ({
   id,
   name,
@@ -8,7 +17,7 @@ const Card = ({
   description,
   selected,
   handleSelected,
-}) => (
+}: CardProps) => (
   <>
     <div
       className={`card ${selected ? 'activated' : ''}`}

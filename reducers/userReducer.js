@@ -62,7 +62,7 @@ const reducer = (state = initialState, action) => {
             ...byDay,
             [nowDay]: { 
               ...byDay[nowDay],
-              products: [action.payload.selectedProdoctId]
+              products: [action.payload.selectedProductId]
             }
           },
       }
